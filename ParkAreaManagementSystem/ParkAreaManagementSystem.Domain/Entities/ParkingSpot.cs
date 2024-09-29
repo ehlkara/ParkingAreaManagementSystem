@@ -1,4 +1,5 @@
 ﻿using ParkAreaManagementSystem.Domain.Core;
+using System.ComponentModel.DataAnnotations;
 
 namespace ParkAreaManagementSystem.Domain.Entities;
 
@@ -9,6 +10,11 @@ public class ParkingSpot : Entity, IAggregateRoot
     public bool IsOccupied { get; private set; }
     public DateTime? StartTime { get; private set; }
     public DateTime? EndTime { get; private set; }
+
+    public decimal? PreCalculatedFee { get; private set; }
+
+    [Timestamp]
+    public byte[] RowVersion { get; private set; }
 
     private ParkingSpot() { }
 
@@ -39,7 +45,6 @@ public class ParkingSpot : Entity, IAggregateRoot
 
     public decimal CalculateFee(TimeSpan duration)
     {
-        // Ücret hesaplama
         decimal baseRate = Size.Size switch
         {
             "Small" => 5m,
