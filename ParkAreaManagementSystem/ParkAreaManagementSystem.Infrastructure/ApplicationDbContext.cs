@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ParkAreaManagementSystem.Domain.Entities;
+using ParkAreaManagementSystem.Infrastructure.Configurations;
 
 namespace ParkAreaManagementSystem.Infrastructure;
 
@@ -16,5 +17,8 @@ public class ApplicationDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
+
+        modelBuilder.ApplyConfiguration(new ParkingSpotConfiguration());
+        modelBuilder.ApplyConfiguration(new VehicleConfiguration());
     }
 }

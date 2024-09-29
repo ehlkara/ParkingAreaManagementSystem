@@ -7,6 +7,8 @@ public class Vehicle : Entity
     public string LicensePlate { get; private set; }
     public VehicleSize Size { get; private set; }
 
+    private Vehicle() { }
+
     public Vehicle(string licensePlate, VehicleSize size)
     {
         LicensePlate = licensePlate;
