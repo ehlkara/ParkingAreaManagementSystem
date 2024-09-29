@@ -10,6 +10,8 @@ public class VehicleSize : ValueObject
 
     public string Size { get; private set; }
 
+    private VehicleSize() { }
+
     public VehicleSize(string size)
     {
         Size = size;

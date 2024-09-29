@@ -18,10 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <ProjectReference Include="..\ParkAreaManagementSystem.Application\ParkAreaManagementSystem.Application.csproj" />
     <ProjectReference Include="..\ParkAreaManagementSystem.Infrastructure\ParkAreaManagementSystem.Infrastructure.csproj" />
   </ItemGroup>
 

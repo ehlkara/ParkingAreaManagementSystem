@@ -17,7 +17,11 @@ public class ApplicationDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
-
+        modelBuilder.Entity<ParkingSpot>()
+     .OwnsOne(p => p.VehicleSize, s =>
+     {
+         s.Property(vs => vs.Size).HasColumnName("VehicleSize").IsRequired();
+     });
         modelBuilder.ApplyConfiguration(new ParkingSpotConfiguration());
         modelBuilder.ApplyConfiguration(new VehicleConfiguration());
     }

@@ -8,10 +8,10 @@ public class ParkingSpotRepository : GenericRepository<ParkingSpot>, IParkingSpo
 {
     public ParkingSpotRepository(ApplicationDbContext context) : base(context) { }
 
-    public async Task<ParkingSpot> FindAvailableSpotAsync(VehicleSize size)
+    public async Task<ParkingSpot> FindAvailableSpotAsync(VehicleSize vehicleSize)
     {
         return await _dbSet
-            .Where(s => s.Size == size && !s.IsOccupied)
+            .Where(s => s.VehicleSize.Size == vehicleSize.Size && !s.IsOccupied)
             .FirstOrDefaultAsync();
     }
 }

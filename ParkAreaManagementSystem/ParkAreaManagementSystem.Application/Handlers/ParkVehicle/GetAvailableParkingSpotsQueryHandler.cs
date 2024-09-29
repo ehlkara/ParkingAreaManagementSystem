@@ -16,6 +16,6 @@ public class GetAvailableParkingSpotsQueryHandler : IRequestHandler<GetAvailable
 
     public async Task<IReadOnlyList<ParkingSpot>> Handle(GetAvailableParkingSpotsQuery request, CancellationToken cancellationToken)
     {
-        return await _parkingSpotRepository.FindAsync(s => s.Size == request.VehicleSize && !s.IsOccupied);
+        return await _parkingSpotRepository.FindAsync(s => s.VehicleSize == request.VehicleSize && !s.IsOccupied);
     }
 }

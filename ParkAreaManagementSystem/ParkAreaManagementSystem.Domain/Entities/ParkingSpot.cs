@@ -6,22 +6,20 @@ namespace ParkAreaManagementSystem.Domain.Entities;
 public class ParkingSpot : Entity, IAggregateRoot
 {
     public string Zone { get; private set; }
-    public VehicleSize Size { get; private set; }
+    public VehicleSize VehicleSize { get; private set; }
     public bool IsOccupied { get; private set; }
     public DateTime? StartTime { get; private set; }
     public DateTime? EndTime { get; private set; }
 
-    public decimal? PreCalculatedFee { get; private set; }
-
     [Timestamp]
-    public byte[] RowVersion { get; private set; }
+    public byte[] RowVersion { get; private set; } = new byte[8];
 
     private ParkingSpot() { }
 
     public ParkingSpot(string zone, VehicleSize size)
     {
         Zone = zone;
-        Size = size;
+        VehicleSize = size;
         IsOccupied = false;
     }
 
@@ -45,7 +43,7 @@ public class ParkingSpot : Entity, IAggregateRoot
 
     public decimal CalculateFee(TimeSpan duration)
     {
-        decimal baseRate = Size.Size switch
+        decimal baseRate = VehicleSize.Size switch
         {
             "Small" => 5m,
             "Medium" => 10m,
